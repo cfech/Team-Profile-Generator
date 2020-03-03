@@ -38,7 +38,7 @@ var initialQuestions = [
         type: "input",
         message: "What is your manager's office Number",
         name: "managerOfficeNumber",
-        default: 0001234567
+        default: 123456789
     },
 
 ]
