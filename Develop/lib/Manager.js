@@ -8,13 +8,13 @@ class Manager extends Employee{
     }
 
     getRole(){
-        this.class
+        var instance = new Manager();
+        return instance.constructor.name
+      
     }
 
     getOfficeNumber(){
-        this.officeNumber
+     return this.officeNumber
     }
-
-
 }
 module.exports = Manager;

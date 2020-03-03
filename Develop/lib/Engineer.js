@@ -10,11 +10,13 @@ class Engineer extends Employee{
     }
 
     getRole(){
-        this.class
+        var instance = new Engineer();
+        return instance.constructor.name
+      
     }
 
     getGithub(){
-        this.github
+   return this.github
     }
 }
 

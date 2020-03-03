@@ -13,6 +13,7 @@ const render = require("./lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+var people = []
 
 var initialQuestions = [
     {
@@ -39,13 +40,9 @@ var initialQuestions = [
         name: "managerOfficeNumber",
         default: 0001234567
     },
-    {
-        type: "list",
-        message: "What type of team member would you like to add ?",
-        name: "teamMember",
-        choices: ["Engineer", "Intern", "No more"]
-    },
+
 ]
+
 var engineerQuestions = [{
     type: "input",
     message: "What is your engineer's name?",
@@ -99,17 +96,75 @@ var interQuestions = [
     },
 ]
 
+function initialQuestionsStart() {
+    inquirer
+        .prompt(initialQuestions) //create the manager, / push to array /if statement for next question 
+        .then(function (answers) {
+            var createdManager = new Manager(answers.manager, answers.managerId, answers.managerEmail, answers.managerOfficeNumber)
+            people.push(createdManager)
+            listQuestion()
+        })
+}
+
+function listQuestion() {
+    inquirer
+        .prompt([{
+            type: "list",
+            message: "What type of team member would you like to add ?",
+            name: "teamMember",
+            choices: ["Engineer", "Intern", "No more"]
+        },])
+        .then(function (answers) {
+
+            var listAnswer = answers.teamMember
+            if (listAnswer === "Engineer") {
+                engineerQuestionArray()
+
+            } else if (listAnswer === "Intern") {
+                internQuestionArray()
+            } else {
+                
+                var renderedOutput = render(people)
+                console.log(renderedOutput)
+                fs.writeFile(outputPath, (renderedOutput), function (err) {
+                    if (err) {
+                        console.log("There was an error")
+                    } else {
+                        console.log('Team was generated')
+                    }
+                })
+                
+
+            }
+        })
+}
+
+function engineerQuestionArray() {
+    inquirer
+        .prompt(engineerQuestions)
+        .then(function (engineerAnswers) {
+            var newEngineer = new Engineer(engineerAnswers.engineer, engineerAnswers.engineerId, engineerAnswers.engineer, engineerAnswers.engineerGithub)
+            people.push(newEngineer)
+
+            listQuestion()
+        })
+}
 
 
+function internQuestionArray() {
+    inquirer
+        .prompt(interQuestions)
+        .then(function (internAnswers) {
+            var newIntern = new Intern(internAnswers.intern, internAnswers.internId, internAnswers.internEmail, internAnswers.internSchool)
+            people.push(newIntern)
 
-inquirer
-    .prompt(initialQuestions ) 
-    // .then(function(){engineerQuestions.next()})
-    
-    // .prompts.next(engineerQuestions)
-    .then(function (answers) {
-        console.log(answers)
-    })
+            listQuestion()
+        })
+}
+
+// create engineer and intern 
+
+initialQuestionsStart()
 
 
 

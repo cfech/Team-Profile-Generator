@@ -8,10 +8,11 @@ class Intern extends Employee{
        
     }
     getRole (){
-        this.class
+        var instance = new Intern();
+        return instance.constructor.name
     }
     getSchool(){
-        this.school
+      return this.school
     }
 }
 module.exports = Intern;

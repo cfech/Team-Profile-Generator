@@ -5,26 +5,27 @@ class Employee {
         this.id = id
         this.email = email
     };
-    
+
     getName() {
-        this.name
+        return this.name
     };
     getId() {
-        this.id
+        return this.id
     };
     getEmail() {
-        this.email
+        return this.email
     };
     getRole() {
-        this.class
+        var instance = new Employee();
+        return instance.constructor.name
+        
     };
-
 }
 
+var todd = new Employee("Todd", 12, "todd@email")
 
-// var todd = new Employee("Todd", 12, "todd@email")
-
-// todd.getName()
-// todd.getId()
-// todd.getEmail()
+todd.getName()
+todd.getId()
+todd.getEmail()
+todd.getRole()
 module.exports = Employee;
