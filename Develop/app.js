@@ -14,104 +14,102 @@ const render = require("./lib/htmlRenderer");
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
+var initialQuestions = [
+    {
+        type: "input",
+        message: "What is your manager's name?",
+        name: "manager",
+        default: "Tom"
+    },
+    {
+        type: "input",
+        message: "What is your manager's ID?",
+        name: "managerId",
+        default: 0001
+    },
+    {
+        type: "input",
+        message: "What is your manager's email?",
+        name: "managerEmail",
+        default: "manager@m.com"
+    },
+    {
+        type: "input",
+        message: "What is your manager's office Number",
+        name: "managerOfficeNumber",
+        default: 0001234567
+    },
+    {
+        type: "list",
+        message: "What type of team member would you like to add ?",
+        name: "teamMember",
+        choices: ["Engineer", "Intern", "No more"]
+    },
+]
+var engineerQuestions = [{
+    type: "input",
+    message: "What is your engineer's name?",
+    name: "engineer",
+    default: "Tim"
+},
+{
+    type: "input",
+    message: "What is your engineer's ID?",
+    name: "engineerId",
+    default: 0001
+},
+{
+    type: "input",
+    message: "What is your engineer's email?",
+    name: "engineerEmail",
+    default: "engineer@m.com"
+},
+{
+    type: "input",
+    message: "What is the engineer's github username?",
+    name: "engineerGithub",
+    default: "cfech"
+}
+]
+
+var interQuestions = [
+    {
+        type: "input",
+        message: "What is your intern's name?",
+        name: "intern",
+        default: "Tim"
+    },
+    {
+        type: "input",
+        message: "What is your intern's ID?",
+        name: "internId",
+        default: 0001
+    },
+    {
+        type: "input",
+        message: "What is your intern's email?",
+        name: "internEmail",
+        default: "intern@m.com"
+    },
+    {
+        type: "input",
+        message: "What is the intern's school?",
+        name: "internSchool",
+        default: "Upenn"
+    },
+]
+
+
+
 
 inquirer
-    .prompt([
-            
-                {
-                    type: "input",
-                    message: "What is your manager's name?",
-                    name: "manager",
-                    default: "Tom"
-                },
-                {
-                    type: "input",
-                    message: "What is your manager's ID?",
-                    name: "managerId",
-                    default: 0001
-                },
-                {
-                    type: "input",
-                    message: "What is your manager's email?",
-                    name: "managerEmail",
-                    default: "manager@m.com"
-                },
-                {
-                    type: "input",
-                    message: "What is your manager's office Number",
-                    name: "managerOfficeNumber",
-                    default: 0001234567
-                },
-                {
-                    type: "list",
-                    message: "What type of team member would you like to add ?",
-                    name: "teamMember",
-                    choices: ["Engineer", "Intern", "No more" ]
-                },
-                {
-                    type: "input",
-                    message: "What is your engineer's name?",
-                    name: "engineer",
-                    default: "Tim"
-                },
-                {
-                    type: "input",
-                    message: "What is your engineer's ID?",
-                    name: "engineerId",
-                    default: 0001
-                },
-                {
-                    type: "input",
-                    message: "What is your engineer's email?",
-                    name: "engineerEmail",
-                    default: "engineer@m.com"
-                },
-                {
-                    type: "input",
-                    message: "What is the engineer's github username?",
-                    name: "engineerGithub",
-                    default: "cfech"
-                },{
-                    type: "input",
-                    message: "What is your intern's name?",
-                    name: "intern",
-                    default: "Tim"
-                },
-                {
-                    type: "input",
-                    message: "What is your intern's ID?",
-                    name: "internId",
-                    default: 0001
-                },
-                {
-                    type: "input",
-                    message: "What is your intern's email?",
-                    name: "internEmail",
-                    default: "intern@m.com"
-                },
-                {
-                    type: "input",
-                    message: "What is the intern's school?",
-                    name: "internSchool",
-                    default: "Upenn"
-                },
-
-
-            
-    ])
-    .then(function(answers){
+    .prompt(initialQuestions ) 
+    // .then(function(){engineerQuestions.next()})
+    
+    // .prompts.next(engineerQuestions)
+    .then(function (answers) {
         console.log(answers)
     })
-
-
-
-
-
-
-
-
-
-
 
 
 
