@@ -27,7 +27,7 @@ var initialQuestions = [
         type: "input",
         message: "What is your manager's ID?",
         name: "managerId",
-        default: 0001
+        default: 1
     },
     {
         type: "input",
@@ -55,7 +55,7 @@ var engineerQuestions = [{
     type: "input",
     message: "What is your engineer's ID?",
     name: "engineerId",
-    default: 0001
+    default: 2
 },
 {
     type: "input",
@@ -83,7 +83,7 @@ var interQuestions = [
         type: "input",
         message: "What is your intern's ID?",
         name: "internId",
-        default: 0001
+        default: 10
     },
     {
         type: "input",
@@ -135,7 +135,7 @@ function listQuestion() {
                 var renderedOutput = render(people)
                 fs.writeFile(outputPath, (renderedOutput), function (err) {
                     if (err) {
-                        console.log("There was an error")
+                        console.log(err)
                     } else {
                         console.log('Team was generated')
                     }
